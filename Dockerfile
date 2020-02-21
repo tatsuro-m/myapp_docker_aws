@@ -11,11 +11,25 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+#追加
+RUN mkdir -p tmp/sockets
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Expose volumes to frontend
+VOLUME /myapp/public
+VOLUME /myapp/tmp
+
+
+# 以下の部分をそのままにしておくと、rails sになると思うので、nginxを使うように一旦コメントアウトしておきますね。
+## Add a script to be executed every time the container starts.
+#COPY entrypoint.sh /usr/bin/
+#RUN chmod +x /usr/bin/entrypoint.sh
+#ENTRYPOINT ["entrypoint.sh"]
+#EXPOSE 3000
+#
+## Start the main process.
+#CMD ["rails", "server", "-b", "0.0.0.0"]
+
+
+# Start Server
+# TODO: environment
+CMD bundle exec puma
