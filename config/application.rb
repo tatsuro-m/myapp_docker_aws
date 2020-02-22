@@ -17,5 +17,6 @@ module Myapp
     # the framework and any gems in your application.
 
     config.hosts << '.tatsupon.work'
+    config.hosts << 'myapp-tutolial-239231620.ap-northeast-1.elb.amazonaws.com'
   end
 end
