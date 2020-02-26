@@ -5,7 +5,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn vim
 #RUN apt-get install -y vim
-RUN mkdir /myapp
+RUN mkdir /webapp
 WORKDIR /webapp
 COPY Gemfile /webapp/Gemfile
 COPY Gemfile.lock /webapp/Gemfile.lock
