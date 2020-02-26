@@ -5,6 +5,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: hogehoge
 #  web:
 #    build: .
@@ -27,6 +28,10 @@ services:
       - log-data:/webapp/log
     depends_on:
       - db
+    environment:
+      RAILS_DB_USER: postgres
+      RAILS_DB_PASSWORD: hogehoge
+      RAILS_DB_HOST: db
   web:
     build:
       context: containers/nginx

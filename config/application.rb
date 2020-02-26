@@ -18,5 +18,14 @@ module Myapp
 
     config.hosts << '.tatsupon.work'
     config.hosts << 'myapp-tutolial-239231620.ap-northeast-1.elb.amazonaws.com'
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: false, # テストDBにレコード作成するファイルの作成をスキップ（初めだけ、のちに削除）。
+                       view_specs: false, # ビューファイル用のスペックを作成しない。
+                       helper_specs: false, # ヘルパーファイル用のスペックを作成しない。
+                       routing_specs: false # routes.rb用のスペックファイル作成しない。
+    end
+
   end
 end
